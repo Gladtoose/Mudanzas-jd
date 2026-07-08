@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mudanzas JD - Servicio profesional de mudanzas. Rápido, seguro y confiable. Solicita tu presupuesto gratis ahora.">
+    <title>Mudanzas JD - Transporte Profesional y Seguro</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                        <path d="M12 20L20 12L28 20M20 13V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <!-- logo -->
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#3b82f6"/>
+                                <stop offset="1" stop-color="#1d4ed8"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">Mudanzas <strong>JD</strong></span>
+                </div>
+
+                <div class="nav-links">
+                    <a href="#servicios">Servicios</a>
+                    <a href="#beneficios">Beneficios</a>
+                    <a href="#reseñas">Reseñas</a>
+                    <a href="#contacto">Contacto</a>
+                </div>
+
+                <button class="btn btn-primary" onclick="scrollToCalculator()">
+                    Presupuesto Gratis
+                </button>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#servicios" onclick="toggleMobileMenu()">Servicios</a>
+        <a href="#beneficios" onclick="toggleMobileMenu()">Beneficios</a>
+        <a href="#reseñas" onclick="toggleMobileMenu()">Reseñas</a>
+        <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
+        <button class="btn btn-primary" onclick="scrollToCalculator(); toggleMobileMenu()">
+            Presupuesto Gratis
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-up">
+                    <h1 class="hero-title">
+                        Tu mudanza <span class="gradient-text">perfecta</span><br>
+                        comienza aquí
+                    </h1>
+                    <p class="hero-subtitle">
+                        Servicio profesional de mudanzas con más de 10 años de experiencia.
+                        Rápido, seguro y sin complicaciones. Tu tranquilidad es nuestra prioridad.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">2500+</span>
+                            <span class="stat-label">Mudanzas exitosas</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Clientes satisfechos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Disponibilidad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Widget -->
+                <div class="calculator-widget" data-aos="fade-left" data-aos-delay="200" id="calculator">
+                    <h3 class="widget-title">Calcula tu mudanza</h3>
+                    <p class="widget-subtitle">Obtén un presupuesto en segundos</p>
+
+                    <form class="calculator-form" onsubmit="return calculateQuote(event)">
+                        <div class="form-group">
+                            <label for="origen">Ciudad de origen</label>
+                            <input type="text" id="origen" placeholder="Ej: Madrid" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="destino">Ciudad de destino</label>
+                            <input type="text" id="destino" placeholder="Ej: Barcelona" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tamaño">Tamaño de la vivienda</label>
+                            <select id="tamaño" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="pequeña">Piso pequeño (1-2 hab.)</option>
+                                <option value="mediana">Piso mediano (3-4 hab.)</option>
+                                <option value="grande">Casa grande (5+ hab.)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha">Fecha estimada</label>
+                            <input type="date" id="fecha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Teléfono de contacto</label>
+                            <input type="tel" id="telefono" placeholder="+34 600 000 000" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            Calcular presupuesto
+                        </button>
+                    </form>
+
+                    <div class="trust-badges">
+                        <span class="badge"> 100% Seguro</span>
+                        <span class="badge"> Respuesta inmediata</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="beneficios" id="beneficios">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">¿Por qué elegir <span class="gradient-text">Mudanzas JD</span>?</h2>
+                <p class="section-subtitle">Compromiso con la excelencia en cada mudanza</p>
+            </div>
+
+            <div class="beneficios-grid">
+                <div class="beneficio-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="beneficio-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="rgba(59, 130, 246, 0.1)"/>
+                            <path d="M32 28H16M32 28C33.1046 28 34 28.8954 34 30V32C34 33.1046 33.1046 34 32 34H16C14.8954 34 14 33.1046 14 32V30C14 28.8954 14.8954 28 16 28M32 28V18C32 16.8954 31.1046 16 30 16H18C16.8954 16 16 16.8954 16 18V28M20 16V14M28 16V14M24 22H24.01" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="beneficio-title">Flota moderna</h3>
+                    <p class="beneficio-description">
+                        Camiones equipados con la última tecnología y sistemas de seguridad para proteger tus pertenencias durante todo el trayecto.
+                    </p>
+                </div>
+
+                <div class="beneficio-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="beneficio-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="rgba(59, 130, 246, 0.1)"/>
+                            <path d="M14 24L16 26L22 20M14 32H26C28.2091 32 30 30.2091 30 28V20C30 17.7909 28.2091 16 26 16H22C20.8954 16 20 16.8954 20 18M34 24V28C34 30.2091 32.2091 32 30 32H26M20 18V24C20 25.1046 20.8954 26 22 26H26" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="beneficio-title">Seguro total</h3>
+                    <p class="beneficio-description">
+                        Cobertura completa de seguros para tus bienes. Empaquetado profesional con materiales de primera calidad para máxima protección.
+                    </p>
+                </div>
+
+                <div class="beneficio-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="beneficio-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="rgba(59, 130, 246, 0.1)"/>
+                            <path d="M24 14V24L30 27M34 24C34 29.5228 29.5228 34 24 34C18.4772 34 14 29.5228 14 24C14 18.4772 18.4772 14 24 14C29.5228 14 34 18.4772 34 24Z" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="beneficio-title">Puntualidad garantizada</h3>
+                    <p class="beneficio-description">
+                        Cumplimos con los horarios acordados. Tu tiempo es valioso y nos comprometemos a respetar cada minuto de tu agenda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section class="servicios" id="servicios">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Nuestros <span class="gradient-text">Servicios</span></h2>
+                <p class="section-subtitle">Soluciones completas para todas tus necesidades</p>
+            </div>
+
+            <div class="servicios-grid">
+                <div class="servicio-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="servicio-number">01</div>
+                    <h3 class="servicio-title">Mudanzas locales</h3>
+                    <p class="servicio-description">Servicio completo de mudanza dentro de la misma ciudad. Rápido y eficiente.</p>
+                    <ul class="servicio-features">
+                        <li>✓ Embalaje profesional</li>
+                        <li>✓ Montaje/Desmontaje de muebles</li>
+                        <li>✓ Transporte seguro</li>
+                    </ul>
+                </div>
+
+                <div class="servicio-card servicio-featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="servicio-badge">Más popular</div>
+                    <div class="servicio-number">02</div>
+                    <h3 class="servicio-title">Mudanzas nacionales</h3>
+                    <p class="servicio-description">Traslados entre ciudades con seguimiento GPS en tiempo real.</p>
+                    <ul class="servicio-features">
+                        <li>✓ Todo incluido</li>
+                        <li>✓ Seguro premium</li>
+                        <li>✓ Almacenamiento temporal</li>
+                    </ul>
+                </div>
+
+                <div class="servicio-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="servicio-number">03</div>
+                    <h3 class="servicio-title">Mudanzas de oficina</h3>
+                    <p class="servicio-description">Especialistas en traslado empresarial. Mínima interrupción de tu negocio.</p>
+                    <ul class="servicio-features">
+                        <li>✓ Planificación estratégica</li>
+                        <li>✓ Horarios flexibles</li>
+                        <li>✓ Equipamiento especializado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reseñas Section -->
+    <section class="reseñas" id="reseñas">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Lo que dicen nuestros <span class="gradient-text">clientes</span></h2>
+                <p class="section-subtitle">Más de 2500 familias confían en nosotros</p>
+            </div>
+
+            <div class="reseñas-slider" data-aos="fade-up" data-aos-delay="100">
+                <div class="reseña-card">
+                    <div class="reseña-header">
+                        <div class="reseña-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%233b82f6' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EML%3C/text%3E%3C/svg%3E" alt="María López">
+                        </div>
+                        <div class="reseña-info">
+                            <h4 class="reseña-name">María López</h4>
+                            <div class="reseña-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="reseña-text">
+                        "Excelente servicio. El equipo fue muy profesional y cuidadoso con todos mis muebles. La mudanza de Madrid a Valencia fue perfecta, sin un solo rasguño. Totalmente recomendables."
+                    </p>
+                    <span class="reseña-date">Hace 2 semanas</span>
+                </div>
+
+                <div class="reseña-card">
+                    <div class="reseña-header">
+                        <div class="reseña-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%2310b981' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EJG%3C/text%3E%3C/svg%3E" alt="Jorge García">
+                        </div>
+                        <div class="reseña-info">
+                            <h4 class="reseña-name">Jorge García</h4>
+                            <div class="reseña-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="reseña-text">
+                        "Contraté el servicio para mudar mi oficina y superaron todas mis expectativas. Muy organizados, puntuales y eficientes. El precio fue muy competitivo. 100% satisfecho."
+                    </p>
+                    <span class="reseña-date">Hace 1 mes</span>
+                </div>
+
+                <div class="reseña-card">
+                    <div class="reseña-header">
+                        <div class="reseña-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23f59e0b' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EAR%3C/text%3E%3C/svg%3E" alt="Ana Rodríguez">
+                        </div>
+                        <div class="reseña-info">
+                            <h4 class="reseña-name">Ana Rodríguez</h4>
+                            <div class="reseña-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="reseña-text">
+                        "Increíble atención al cliente. Desde el primer contacto hasta el último detalle de la mudanza, todo fue impecable. El equipo es súper amable y profesional. Los recomiendo al 100%."
+                    </p>
+                    <span class="reseña-date">Hace 3 semanas</span>
+                </div>
+            </div>
+
+            <div class="reseñas-platforms" data-aos="fade-up" data-aos-delay="200">
+                <div class="platform-badge">
+                    <span class="platform-name">Google</span>
+                    <div class="platform-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.9/5</span>
+                    </div>
+                </div>
+                <div class="platform-badge">
+                    <span class="platform-name">Trustpilot</span>
+                    <div class="platform-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.8/5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="8" fill="url(#gradient2)"/>
+                            <path d="M12 20L20 12L28 20M20 13V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="gradient2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#3b82f6"/>
+                                    <stop offset="1" stop-color="#1d4ed8"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span class="logo-text">Mudanzas <strong>JD</strong></span>
+                    </div>
+                    <p class="footer-description">
+                        Tu socio de confianza en mudanzas profesionales. Llevamos tu hogar a donde necesites con seguridad y profesionalidad.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="WhatsApp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Enlaces rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#beneficios">Beneficios</a></li>
+                        <li><a href="#reseñas">Reseñas</a></li>
+                        <li><a href="#calculator">Presupuesto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Servicios</h3>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Mudanzas locales</a></li>
+                        <li><a href="#servicios">Mudanzas nacionales</a></li>
+                        <li><a href="#servicios">Mudanzas de oficina</a></li>
+                        <li><a href="#servicios">Embalaje profesional</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="footer-title">Contacto</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>+34 900 123 456</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>info@mudanzasjd.com</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Madrid, España</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Mudanzas JD. Todos los derechos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Política de privacidad</a>
+                    <span>·</span>
+                    <a href="#">Términos y condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Container (Voiceflow) -->
+    <div class="chatbot-container" id="voiceflow-chat">
+        <!-- El widget de Voiceflow se insertará aquí -->
+        <div class="chatbot-placeholder">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            offset: 100
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Scroll to calculator
+        function scrollToCalculator() {
+            const calculator = document.getElementById('calculator');
+            calculator.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Calculate quote
+        function calculateQuote(event) {
+            event.preventDefault();
+
+            const origen = document.getElementById('origen').value;
+            const destino = document.getElementById('destino').value;
+            const tamaño = document.getElementById('tamaño').value;
+            const fecha = document.getElementById('fecha').value;
+            const telefono = document.getElementById('telefono').value;
+
+            // Aquí iría la lógica real de cálculo o envío a un backend
+            alert(`¡Gracias! Hemos recibido tu solicitud.\n\nOrigen: ${origen}\nDestino: ${destino}\nTamaño: ${tamaño}\nFecha: ${fecha}\n\nTe contactaremos pronto al ${telefono}`);
+
+            return false;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Voiceflow chatbot integration (placeholder)
+        // Aquí se insertará el código de integración de Voiceflow
+        // Ejemplo:
+        // (function(d, t) {
+        //     var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        //     v.onload = function() {
+        //       window.voiceflow.chat.load({
+        //         verify: { projectID: 'TU_PROJECT_ID' },
+        //         url: 'https://general-runtime.voiceflow.com',
+        //         versionID: 'production'
+        //       });
+        //     }
+        //     v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+        //     v.type = "text/javascript";
+        //     s.parentNode.insertBefore(v, s);
+        // })(document, 'script');
+    </script>
+</body>
+</html>
