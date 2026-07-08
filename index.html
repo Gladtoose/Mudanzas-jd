@@ -102,35 +102,16 @@
                     </div>
                 </div>
 
-                <!-- Calculator Widget -->
+                <!-- Lead Capture Widget -->
                 <div class="calculator-widget" data-aos="fade-left" data-aos-delay="200" id="calculator">
-                    <h3 class="widget-title">Calcula tu mudanza</h3>
-                    <p class="widget-subtitle">Obtén un presupuesto en segundos</p>
-
-                    <form class="calculator-form" onsubmit="return calculateQuote(event)">
-                        <div class="form-group">
-                            <label for="origen">Ciudad de origen</label>
-                            <input type="text" id="origen" placeholder="Ej: Madrid" required>
-                        </div>
+                    <!-- Formulario de solicitud -->
+                    <form class="calculator-form" id="leadForm" onsubmit="return submitLead(event)">
+                        <h3 class="widget-title">Solicitud de Presupuesto Gratis</h3>
+                        <p class="widget-subtitle">Rellena tus datos y te llamamos hoy mismo</p>
 
                         <div class="form-group">
-                            <label for="destino">Ciudad de destino</label>
-                            <input type="text" id="destino" placeholder="Ej: Barcelona" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="tamaño">Tamaño de la vivienda</label>
-                            <select id="tamaño" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="pequeña">Piso pequeño (1-2 hab.)</option>
-                                <option value="mediana">Piso mediano (3-4 hab.)</option>
-                                <option value="grande">Casa grande (5+ hab.)</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fecha">Fecha estimada</label>
-                            <input type="date" id="fecha" required>
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" placeholder="Ej: María López" required>
                         </div>
 
                         <div class="form-group">
@@ -138,14 +119,54 @@
                             <input type="tel" id="telefono" placeholder="+34 600 000 000" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-full">
-                            Calcular presupuesto
+                        <div class="form-group">
+                            <label for="origen">Origen</label>
+                            <input type="text" id="origen" placeholder="Ej: Madrid" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="destino">Destino</label>
+                            <input type="text" id="destino" placeholder="Ej: Barcelona" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tamaño">Tamaño de la mudanza</label>
+                            <div class="select-wrapper">
+                                <select id="tamaño" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option value="habitacion">Habitación</option>
+                                    <option value="piso-mediano">Piso Mediano</option>
+                                    <option value="casa-chalet">Casa / Chalet</option>
+                                    <option value="oficina-local">Oficina / Local</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-cta btn-full">
+                            <span class="btn-cta-label">Solicitar Presupuesto Gratis</span>
                         </button>
+
+                        <div class="trust-badges">
+                            <span class="badge"> 100% Seguro</span>
+                            <span class="badge"> Respuesta inmediata</span>
+                        </div>
                     </form>
 
-                    <div class="trust-badges">
-                        <span class="badge"> 100% Seguro</span>
-                        <span class="badge"> Respuesta inmediata</span>
+                    <!-- Tarjeta de éxito -->
+                    <div class="success-card" id="successCard" aria-hidden="true">
+                        <div class="success-icon">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="30" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-width="2"/>
+                                <path d="M20 33L28 41L44 24" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="success-title">¡Solicitud recibida!</h3>
+                        <p class="success-message">Te llamaremos en menos de 2 horas.</p>
+
+                        <a href="#" class="btn btn-urgent btn-full">
+                            <span class="btn-urgent-icon">📅</span>
+                            ¿Tienes prisa? Agendar llamada directa en el calendario
+                        </a>
                     </div>
                 </div>
             </div>
@@ -257,8 +278,8 @@
                 <p class="section-subtitle">Más de 2500 familias confían en nosotros</p>
             </div>
 
-            <div class="reseñas-slider" data-aos="fade-up" data-aos-delay="100">
-                <div class="reseña-card">
+            <div class="reseñas-slider">
+                <div class="reseña-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="reseña-header">
                         <div class="reseña-avatar">
                             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%233b82f6' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EML%3C/text%3E%3C/svg%3E" alt="María López">
@@ -274,7 +295,7 @@
                     <span class="reseña-date">Hace 2 semanas</span>
                 </div>
 
-                <div class="reseña-card">
+                <div class="reseña-card" data-aos="fade-up" data-aos-delay="250">
                     <div class="reseña-header">
                         <div class="reseña-avatar">
                             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%2310b981' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EJG%3C/text%3E%3C/svg%3E" alt="Jorge García">
@@ -290,7 +311,7 @@
                     <span class="reseña-date">Hace 1 mes</span>
                 </div>
 
-                <div class="reseña-card">
+                <div class="reseña-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="reseña-header">
                         <div class="reseña-avatar">
                             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23f59e0b' width='60' height='60'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='white'%3EAR%3C/text%3E%3C/svg%3E" alt="Ana Rodríguez">
@@ -395,7 +416,7 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span>+34 900 123 456</span>
+                            <span>+34 627 603 898</span>
                         </li>
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -476,18 +497,32 @@
             calculator.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // Calculate quote
-        function calculateQuote(event) {
+        // Submit lead request
+        function submitLead(event) {
             event.preventDefault();
 
-            const origen = document.getElementById('origen').value;
-            const destino = document.getElementById('destino').value;
-            const tamaño = document.getElementById('tamaño').value;
-            const fecha = document.getElementById('fecha').value;
-            const telefono = document.getElementById('telefono').value;
+            const form = document.getElementById('leadForm');
+            const successCard = document.getElementById('successCard');
 
-            // Aquí iría la lógica real de cálculo o envío a un backend
-            alert(`¡Gracias! Hemos recibido tu solicitud.\n\nOrigen: ${origen}\nDestino: ${destino}\nTamaño: ${tamaño}\nFecha: ${fecha}\n\nTe contactaremos pronto al ${telefono}`);
+            // Aquí iría el envío real de los datos a un backend / CRM
+            // const lead = {
+            //     nombre: document.getElementById('nombre').value,
+            //     telefono: document.getElementById('telefono').value,
+            //     origen: document.getElementById('origen').value,
+            //     destino: document.getElementById('destino').value,
+            //     tamaño: document.getElementById('tamaño').value
+            // };
+
+            // Fade-out suave del formulario
+            form.classList.add('is-hidden');
+
+            // Al terminar la transición, ocultamos el form y mostramos la tarjeta de éxito
+            form.addEventListener('transitionend', function onFadeOut() {
+                form.removeEventListener('transitionend', onFadeOut);
+                form.style.display = 'none';
+                successCard.classList.add('is-visible');
+                successCard.setAttribute('aria-hidden', 'false');
+            }, { once: true });
 
             return false;
         }
