@@ -123,13 +123,64 @@ button {
 }
 
 @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* ============================================
    Navbar
    ============================================ */
+
+/* 1. Aseguramos el centrado vertical perfecto de todo el bloque */
+.navbar-content .logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; 
+    gap: 16px !important; 
+    font-size: 1.6rem !important; 
+}
+
+/* 2. El contenedor se vuelve totalmente transparente e invisible. 
+   Solo sirve para darle un tamaño gigante a tu logo sin meter fondos raros. */
+.logo-container {
+    flex-shrink: 0 !important;
+    height: 110px !important;    
+    width: 110px !important;     
+    background: transparent !important;
+    border: none !important;      
+    box-shadow: none !important;  
+    
+    /* Centrado perfecto usando Flexbox */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: -20px 0 !important;   
+    overflow: visible !important; 
+}
+
+/* 3. La furgoneta y su círculo original centrado milimétricamente */
+.navbar-logo {
+    display: block !important;
+    width: 100% !important;     
+    height: 100% !important;    
+    object-fit: contain !important; 
+    
+    transform: translateY(6px) !important; 
+}
+
+/* 4. Animación hover aplicada directamente a tu logo original */
+
+.logo:hover .navbar-logo {
+    transform: translateY(6px) scale(1.08) !important;
+    filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6)) !important;
+}
 .navbar {
     position: fixed;
     top: 0;
@@ -158,10 +209,15 @@ button {
 .logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0.75rem;
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.logo-text strong {
+    color: var(--color-primary-light);
 }
 
 .logo-text strong {
@@ -321,20 +377,24 @@ button {
     left: -75%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.45) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.45) 50%,
+            rgba(255, 255, 255, 0) 100%);
     transform: skewX(-20deg);
     animation: cta-shine 3.5s ease-in-out infinite;
     z-index: 1;
 }
 
 @keyframes cta-shine {
-    0% { left: -75%; }
-    45%, 100% { left: 130%; }
+    0% {
+        left: -75%;
+    }
+
+    45%,
+    100% {
+        left: 130%;
+    }
 }
 
 /* ============================================
@@ -384,8 +444,15 @@ button {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.05);
+    }
 }
 
 .hero-content {
@@ -577,8 +644,15 @@ button {
 }
 
 @keyframes success-pop {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .success-title {
@@ -620,8 +694,17 @@ button {
 
 /* Vibración/latido sutil para captar la atención */
 @keyframes urgent-attention {
-    0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 8px 22px -6px rgba(245, 158, 11, 0.6); }
-    50% { transform: translateY(-2px) scale(1.015); box-shadow: 0 12px 28px -6px rgba(245, 158, 11, 0.75); }
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 8px 22px -6px rgba(245, 158, 11, 0.6);
+    }
+
+    50% {
+        transform: translateY(-2px) scale(1.015);
+        box-shadow: 0 12px 28px -6px rgba(245, 158, 11, 0.75);
+    }
 }
 
 .trust-badges {
@@ -1050,9 +1133,12 @@ button {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
     }
+
     50% {
         box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
     }
@@ -1076,6 +1162,18 @@ button {
 
     .mobile-menu-btn {
         display: flex;
+    }
+
+    /* Badge más compacto para dejar aire al botón hamburguesa */
+    .logo-container {
+        width: 68px;
+        height: 68px;
+        margin: -8px 0 -12px;
+    }
+
+    .logo {
+        font-size: 1.125rem;
+        gap: 0.625rem;
     }
 
     .hero-content {
@@ -1123,6 +1221,18 @@ button {
 
 /* Mobile (480px and below) */
 @media (max-width: 480px) {
+    /* En pantallas muy estrechas el emblema ya rotula la marca:
+       reducimos el badge y ocultamos el wordmark para 0 colisiones con la hamburguesa. */
+    .logo-container {
+        width: 60px;
+        height: 60px;
+        margin: -6px 0 -10px;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -1157,6 +1267,7 @@ button {
    Print Styles
    ============================================ */
 @media print {
+
     .navbar,
     .mobile-menu,
     .chatbot-container,
@@ -1179,6 +1290,7 @@ button {
    Accessibility
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
