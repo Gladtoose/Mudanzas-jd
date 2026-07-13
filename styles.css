@@ -139,47 +139,44 @@ button {
    ============================================ */
 
 /* 1. Aseguramos el centrado vertical perfecto de todo el bloque */
-.navbar-content .logo {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important; 
-    gap: 16px !important; 
-    font-size: 1.6rem !important; 
+.navbar .navbar-content .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 16px; 
+    font-size: 1.6rem; 
 }
 
-/* 2. El contenedor se vuelve totalmente transparente e invisible. 
-   Solo sirve para darle un tamaño gigante a tu logo sin meter fondos raros. */
-.logo-container {
-    flex-shrink: 0 !important;
-    height: 110px !important;    
-    width: 110px !important;     
-    background: transparent !important;
-    border: none !important;      
-    box-shadow: none !important;  
+/* 2. El contenedor se vuelve totalmente transparente e invisible. */
+.navbar .navbar-content .logo-container {
+    flex-shrink: 0;
+    height: 110px;    
+    width: 110px;     
+    background: transparent;
+    border: none;      
+    box-shadow: none;  
     
     /* Centrado perfecto usando Flexbox */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: -20px 0 !important;   
-    overflow: visible !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -20px 0;   
+    overflow: visible; 
 }
 
 /* 3. La furgoneta y su círculo original centrado milimétricamente */
-.navbar-logo {
-    display: block !important;
-    width: 100% !important;     
-    height: 100% !important;    
-    object-fit: contain !important; 
-    
-    transform: translateY(6px) !important; 
+.navbar .navbar-content .navbar-logo {
+    display: block;
+    width: 100%;     
+    height: 100%;    
+    object-fit: contain; 
+    transform: translateY(6px); 
 }
 
 /* 4. Animación hover aplicada directamente a tu logo original */
-
-.logo:hover .navbar-logo {
-    transform: translateY(6px) scale(1.08) !important;
-    filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6)) !important;
+.navbar .navbar-content .logo:hover .navbar-logo {
+    transform: translateY(6px) scale(1.08);
+    filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6));
 }
 .navbar {
     position: fixed;
@@ -273,11 +270,10 @@ button {
 
 .mobile-menu {
     position: fixed;
-    top: 80px;
+    top: 80px; /* Asegúrarse de que coincida con la altura de tu navbar en móvil */
     left: 0;
     right: 0;
-    background: rgba(15, 23, 42, 0.98);
-    backdrop-filter: blur(10px);
+    background: #0f172a !important; /* Color oscuro sólido para que no transparente el texto de atrás */
     padding: var(--spacing-lg);
     display: flex;
     flex-direction: column;
@@ -285,6 +281,7 @@ button {
     transform: translateY(-120%);
     transition: transform var(--transition-base);
     box-shadow: var(--shadow-xl);
+    z-index: 999 !important; /* ESTO ES LO QUE FALTA: lo pone por encima de todo */
 }
 
 .mobile-menu.active {
@@ -1217,10 +1214,33 @@ button {
         width: 56px;
         height: 56px;
     }
+/* Evitamos que el inicio ocupe pantallas infinitas */
+    .hero {
+        min-height: auto; 
+        padding: calc(70px + var(--spacing-xl)) 0 var(--spacing-xl); /* Reduce márgenes superiores */
+    }
+
+    .hero .hero-content {
+        gap: var(--spacing-xl); 
+    }
+
+    
+    .hero .hero-content .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+        justify-items: center;
+        text-align: center;
+    }
+    
+    .hero .hero-content .hero-stats .stat-item:last-child {
+        grid-column: span 2; /* Centra la tercera estadística (24/7) abajo */
+    }
 }
 
 /* Mobile (480px and below) */
 @media (max-width: 480px) {
+
     /* En pantallas muy estrechas el emblema ya rotula la marca:
        reducimos el badge y ocultamos el wordmark para 0 colisiones con la hamburguesa. */
     .logo-container {
@@ -1253,6 +1273,22 @@ button {
     .servicio-card,
     .reseña-card {
         padding: var(--spacing-md);
+    }
+ .hero .hero-content .hero-title {
+        font-size: 1.85rem; /* Tamaño perfecto para leer en una mano */
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .hero .hero-content .hero-subtitle {
+        font-size: 0.95rem;
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    /* Reducimos un poco el padding interno del formulario para ganar espacio */
+    .hero .hero-content .calculator-widget {
+        padding: var(--spacing-sm);
     }
 }
 
