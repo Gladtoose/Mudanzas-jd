@@ -1352,7 +1352,26 @@ button {
     }
 
     .calculator-widget {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+    .calculator-widget .success-card {
+        padding: var(--spacing-sm) 10px; 
+    }
+
+    .success-card .btn-urgent {
+        width: 100%;            
+        box-sizing: border-box;
+        padding: 12px 10px;     
+        
+        
+        white-space: normal; 
+        word-wrap: break-word;
+        
+        
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 
     .section-title {
