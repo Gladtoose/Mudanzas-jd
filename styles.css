@@ -253,6 +253,39 @@ button {
     width: 100%;
 }
 
+/* Selector de idioma (ES/EN) */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: rgba(148, 163, 184, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: var(--radius-full);
+}
+
+.lang-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+    color: var(--color-text);
+}
+
+.lang-btn.active {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+}
+
+.mobile-menu .lang-switcher {
+    justify-content: center;
+}
+
 .mobile-menu-btn {
     display: none;
     flex-direction: column;
@@ -359,6 +392,13 @@ button {
 
 .btn-cta:active {
     transform: translateY(-1px);
+}
+
+.btn-cta:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
 }
 
 .btn-cta .btn-cta-label {
@@ -556,7 +596,8 @@ button {
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
     padding: 0.875rem 1rem;
     background: var(--color-dark-tertiary);
     border: 1px solid rgba(148, 163, 184, 0.2);
@@ -568,7 +609,8 @@ button {
 }
 
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
@@ -576,6 +618,42 @@ button {
 
 .form-group select {
     cursor: pointer;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form-error {
+    display: block;
+    min-height: 1rem;
+    font-size: 0.8125rem;
+    color: #f87171;
+}
+
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea {
+    border-color: #f87171;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.12);
+}
+
+.form-status {
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-status-error {
+    color: #f87171;
+}
+
+.form-status-success {
+    color: var(--color-success);
 }
 
 /* Select elegante con flecha personalizada */
@@ -1243,7 +1321,8 @@ button {
     }
 
     .nav-links,
-    .btn-primary {
+    .btn-primary,
+    .navbar-content > .lang-switcher {
         display: none;
     }
 

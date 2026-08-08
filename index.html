@@ -37,13 +37,18 @@
                 </div>
 
                 <div class="nav-links">
-                    <a href="#servicios">Servicios</a>
-                    <a href="#beneficios">Beneficios</a>
-                    <a href="#reseñas">Reseñas</a>
-                    <a href="#contacto">Contacto</a>
+                    <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+                    <a href="#beneficios" data-i18n="nav.beneficios">Beneficios</a>
+                    <a href="#reseñas" data-i18n="nav.resenas">Reseñas</a>
+                    <a href="#contacto" data-i18n="nav.contacto">Contacto</a>
                 </div>
 
-                <button class="btn btn-primary" onclick="scrollToCalculator()">
+                <div class="lang-switcher" role="group" aria-label="Selector de idioma / Language selector">
+                    <button type="button" class="lang-btn" data-lang="es">ES</button>
+                    <button type="button" class="lang-btn" data-lang="en">EN</button>
+                </div>
+
+                <button class="btn btn-primary" data-i18n="nav.cta" onclick="scrollToCalculator()">
                     Presupuesto Gratis
                 </button>
 
@@ -58,11 +63,15 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#servicios" onclick="toggleMobileMenu()">Servicios</a>
-        <a href="#beneficios" onclick="toggleMobileMenu()">Beneficios</a>
-        <a href="#reseñas" onclick="toggleMobileMenu()">Reseñas</a>
-        <a href="#contacto" onclick="toggleMobileMenu()">Contacto</a>
-        <button class="btn btn-primary" onclick="scrollToCalculator(); toggleMobileMenu()">
+        <a href="#servicios" data-i18n="nav.servicios" onclick="toggleMobileMenu()">Servicios</a>
+        <a href="#beneficios" data-i18n="nav.beneficios" onclick="toggleMobileMenu()">Beneficios</a>
+        <a href="#reseñas" data-i18n="nav.resenas" onclick="toggleMobileMenu()">Reseñas</a>
+        <a href="#contacto" data-i18n="nav.contacto" onclick="toggleMobileMenu()">Contacto</a>
+        <div class="lang-switcher" role="group" aria-label="Selector de idioma / Language selector">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="btn btn-primary" data-i18n="nav.cta" onclick="scrollToCalculator(); toggleMobileMenu()">
             Presupuesto Gratis
         </button>
     </div>
@@ -78,25 +87,25 @@
             <div class="hero-content">
                 <div class="hero-text" data-aos="fade-up">
                     <h1 class="hero-title">
-                        Tu mudanza <span class="gradient-text">perfecta</span><br>
-                        comienza aquí
+                        <span data-i18n="hero.titleLine1">Tu mudanza</span> <span class="gradient-text" data-i18n="hero.titleHighlight">perfecta</span><br>
+                        <span data-i18n="hero.titleLine2">comienza aquí</span>
                     </h1>
-                    <p class="hero-subtitle">
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">
                         Servicio profesional de mudanzas con más de 10 años de experiencia.
                         Rápido, seguro y sin complicaciones. Tu tranquilidad es nuestra prioridad.
                     </p>
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-number">2500+</span>
-                            <span class="stat-label">Mudanzas exitosas</span>
+                            <span class="stat-label" data-i18n="hero.stat1Label">Mudanzas exitosas</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">98%</span>
-                            <span class="stat-label">Clientes satisfechos</span>
+                            <span class="stat-label" data-i18n="hero.stat2Label">Clientes satisfechos</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">24/7</span>
-                            <span class="stat-label">Disponibilidad</span>
+                            <span class="stat-label" data-i18n="hero.stat3Label">Disponibilidad</span>
                         </div>
                     </div>
                 </div>
@@ -104,50 +113,68 @@
                 <!-- Lead Capture Widget -->
                 <div class="calculator-widget" data-aos="fade-left" data-aos-delay="200" id="calculator">
                     <!-- Formulario de solicitud -->
-                    <form class="calculator-form" id="leadForm" onsubmit="return submitLead(event)">
-                        <h3 class="widget-title">Solicitud de Presupuesto Gratis</h3>
-                        <p class="widget-subtitle">Rellena tus datos y te llamamos hoy mismo</p>
+                    <form class="calculator-form" id="leadForm" novalidate>
+                        <h3 class="widget-title" data-i18n="form.title">Solicitud de Presupuesto Gratis</h3>
+                        <p class="widget-subtitle" data-i18n="form.subtitle">Rellena tus datos y te llamamos hoy mismo</p>
 
                         <div class="form-group">
-                            <label for="nombre">Nombre completo</label>
-                            <input type="text" id="nombre" placeholder="Ej: María López" required>
+                            <label for="nombre" data-i18n="form.nombreLabel">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" data-i18n-placeholder="form.nombrePlaceholder" placeholder="Ej: María López" aria-describedby="error-nombre" required>
+                            <span class="form-error" id="error-nombre"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="telefono">Teléfono de contacto</label>
-                            <input type="tel" id="telefono" placeholder="+34 600 000 000" required>
+                            <label for="telefono" data-i18n="form.telefonoLabel">Teléfono de contacto</label>
+                            <input type="tel" id="telefono" name="telefono" data-i18n-placeholder="form.telefonoPlaceholder" placeholder="+34 600 000 000" aria-describedby="error-telefono" required>
+                            <span class="form-error" id="error-telefono"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="origen">Origen</label>
-                            <input type="text" id="origen" placeholder="Ej: Madrid" required>
+                            <label for="email" data-i18n="form.emailLabel">Correo electrónico</label>
+                            <input type="email" id="email" name="email" data-i18n-placeholder="form.emailPlaceholder" placeholder="Ej: maria@email.com" aria-describedby="error-email" required>
+                            <span class="form-error" id="error-email"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="destino">Destino</label>
-                            <input type="text" id="destino" placeholder="Ej: Barcelona" required>
+                            <label for="origen" data-i18n="form.origenLabel">Origen</label>
+                            <input type="text" id="origen" name="origen" data-i18n-placeholder="form.origenPlaceholder" placeholder="Ej: Madrid" aria-describedby="error-origen" required>
+                            <span class="form-error" id="error-origen"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="tamaño">Tamaño de la mudanza</label>
+                            <label for="destino" data-i18n="form.destinoLabel">Destino</label>
+                            <input type="text" id="destino" name="destino" data-i18n-placeholder="form.destinoPlaceholder" placeholder="Ej: Barcelona" aria-describedby="error-destino" required>
+                            <span class="form-error" id="error-destino"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tamaño" data-i18n="form.tamanoLabel">Tamaño de la mudanza</label>
                             <div class="select-wrapper">
-                                <select id="tamaño" required>
-                                    <option value="" disabled selected>Selecciona una opción</option>
-                                    <option value="habitacion">Habitación</option>
-                                    <option value="piso-mediano">Piso Mediano</option>
-                                    <option value="casa-chalet">Casa / Chalet</option>
-                                    <option value="oficina-local">Oficina / Local</option>
+                                <select id="tamaño" name="tamaño" aria-describedby="error-tamaño" required>
+                                    <option value="" disabled selected data-i18n="form.tamanoPlaceholder">Selecciona una opción</option>
+                                    <option value="habitacion" data-i18n="form.tamanoOption1">Habitación</option>
+                                    <option value="piso-mediano" data-i18n="form.tamanoOption2">Piso Mediano</option>
+                                    <option value="casa-chalet" data-i18n="form.tamanoOption3">Casa / Chalet</option>
+                                    <option value="oficina-local" data-i18n="form.tamanoOption4">Oficina / Local</option>
                                 </select>
                             </div>
+                            <span class="form-error" id="error-tamaño"></span>
                         </div>
 
+                        <div class="form-group">
+                            <label for="mensaje" data-i18n="form.mensajeLabel">Mensaje (opcional)</label>
+                            <textarea id="mensaje" name="mensaje" rows="3" data-i18n-placeholder="form.mensajePlaceholder" placeholder="Cuéntanos algo más sobre tu mudanza..."></textarea>
+                        </div>
+
+                        <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
+
                         <button type="submit" class="btn btn-cta btn-full">
-                            <span class="btn-cta-label">Solicitar Presupuesto Gratis</span>
+                            <span class="btn-cta-label" data-i18n="form.submit">Solicitar Presupuesto Gratis</span>
                         </button>
 
                         <div class="trust-badges">
-                            <span class="badge"> 100% Seguro</span>
-                            <span class="badge"> Respuesta inmediata</span>
+                            <span class="badge" data-i18n="form.badge1"> 100% Seguro</span>
+                            <span class="badge" data-i18n="form.badge2"> Respuesta inmediata</span>
                         </div>
                     </form>
 
@@ -162,12 +189,12 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <h3 class="success-title">¡Solicitud recibida!</h3>
-                        <p class="success-message">Te llamaremos en menos de 2 horas.</p>
+                        <h3 class="success-title" data-i18n="success.title">¡Solicitud recibida!</h3>
+                        <p class="success-message" data-i18n="success.message">Te llamaremos en menos de 2 horas.</p>
 
                         <a href="#" class="btn btn-urgent btn-full">
                             <span class="btn-urgent-icon">📅</span>
-                            ¿Tienes prisa? Agendar llamada directa en el calendario
+                            <span data-i18n="success.urgent">¿Tienes prisa? Agendar llamada directa en el calendario</span>
                         </a>
                     </div>
                 </div>
@@ -179,8 +206,8 @@
     <section class="beneficios" id="beneficios">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">¿Por qué elegir <span class="gradient-text">Mudanzas JD</span>?</h2>
-                <p class="section-subtitle">Compromiso con la excelencia en cada mudanza</p>
+                <h2 class="section-title"><span data-i18n="beneficios.titlePre">¿Por qué elegir</span> <span class="gradient-text">Mudanzas JD</span>?</h2>
+                <p class="section-subtitle" data-i18n="beneficios.subtitle">Compromiso con la excelencia en cada mudanza</p>
             </div>
 
             <div class="beneficios-grid">
@@ -193,8 +220,8 @@
                                 stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="beneficio-title">Flota moderna</h3>
-                    <p class="beneficio-description">
+                    <h3 class="beneficio-title" data-i18n="beneficio1.title">Flota moderna</h3>
+                    <p class="beneficio-description" data-i18n="beneficio1.desc">
                         Camiones equipados con la última tecnología y sistemas de seguridad para proteger tus
                         pertenencias durante todo el trayecto.
                     </p>
@@ -209,8 +236,8 @@
                                 stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="beneficio-title">Seguro total</h3>
-                    <p class="beneficio-description">
+                    <h3 class="beneficio-title" data-i18n="beneficio2.title">Seguro total</h3>
+                    <p class="beneficio-description" data-i18n="beneficio2.desc">
                         Cobertura completa de seguros para tus bienes. Empaquetado profesional con materiales de primera
                         calidad para máxima protección.
                     </p>
@@ -225,8 +252,8 @@
                                 stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="beneficio-title">Puntualidad garantizada</h3>
-                    <p class="beneficio-description">
+                    <h3 class="beneficio-title" data-i18n="beneficio3.title">Puntualidad garantizada</h3>
+                    <p class="beneficio-description" data-i18n="beneficio3.desc">
                         Cumplimos con los horarios acordados. Tu tiempo es valioso y nos comprometemos a respetar cada
                         minuto de tu agenda.
                     </p>
@@ -273,45 +300,45 @@
     <section class="servicios" id="servicios">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Nuestros <span class="gradient-text">Servicios</span></h2>
-                <p class="section-subtitle">Soluciones completas para todas tus necesidades</p>
+                <h2 class="section-title"><span data-i18n="servicios.titlePre">Nuestros</span> <span class="gradient-text" data-i18n="servicios.titleHighlight">Servicios</span></h2>
+                <p class="section-subtitle" data-i18n="servicios.subtitle">Soluciones completas para todas tus necesidades</p>
             </div>
 
             <div class="servicios-grid">
                 <div class="servicio-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="servicio-number">01</div>
-                    <h3 class="servicio-title">Mudanzas locales</h3>
-                    <p class="servicio-description">Servicio completo de mudanza dentro de la misma ciudad. Rápido y
+                    <h3 class="servicio-title" data-i18n="servicio1.title">Mudanzas locales</h3>
+                    <p class="servicio-description" data-i18n="servicio1.desc">Servicio completo de mudanza dentro de la misma ciudad. Rápido y
                         eficiente.</p>
                     <ul class="servicio-features">
-                        <li>✓ Embalaje profesional</li>
-                        <li>✓ Montaje/Desmontaje de muebles</li>
-                        <li>✓ Transporte seguro</li>
+                        <li data-i18n="servicio1.feature1">✓ Embalaje profesional</li>
+                        <li data-i18n="servicio1.feature2">✓ Montaje/Desmontaje de muebles</li>
+                        <li data-i18n="servicio1.feature3">✓ Transporte seguro</li>
                     </ul>
                 </div>
 
                 <div class="servicio-card servicio-featured" data-aos="fade-up" data-aos-delay="200">
-                    <div class="servicio-badge">Más popular</div>
+                    <div class="servicio-badge" data-i18n="servicios.badgePopular">Más popular</div>
                     <div class="servicio-number">02</div>
-                    <h3 class="servicio-title">Mudanzas nacionales</h3>
-                    <p class="servicio-description">Traslados entre ciudades con máxima protección y cuidado experto en
+                    <h3 class="servicio-title" data-i18n="servicio2.title">Mudanzas nacionales</h3>
+                    <p class="servicio-description" data-i18n="servicio2.desc">Traslados entre ciudades con máxima protección y cuidado experto en
                         mudanzas.</p>
                     <ul class="servicio-features">
-                        <li>✓ Todo incluido</li>
-                        <li>✓ Seguro premium</li>
-                        <li>✓ Almacenamiento temporal</li>
+                        <li data-i18n="servicio2.feature1">✓ Todo incluido</li>
+                        <li data-i18n="servicio2.feature2">✓ Seguro premium</li>
+                        <li data-i18n="servicio2.feature3">✓ Almacenamiento temporal</li>
                     </ul>
                 </div>
 
                 <div class="servicio-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="servicio-number">03</div>
-                    <h3 class="servicio-title">Mudanzas de oficina</h3>
-                    <p class="servicio-description">Especialistas en traslado empresarial. Mínima interrupción de tu
+                    <h3 class="servicio-title" data-i18n="servicio3.title">Mudanzas de oficina</h3>
+                    <p class="servicio-description" data-i18n="servicio3.desc">Especialistas en traslado empresarial. Mínima interrupción de tu
                         negocio.</p>
                     <ul class="servicio-features">
-                        <li>✓ Planificación estratégica</li>
-                        <li>✓ Horarios flexibles</li>
-                        <li>✓ Equipamiento especializado</li>
+                        <li data-i18n="servicio3.feature1">✓ Planificación estratégica</li>
+                        <li data-i18n="servicio3.feature2">✓ Horarios flexibles</li>
+                        <li data-i18n="servicio3.feature3">✓ Equipamiento especializado</li>
                     </ul>
                 </div>
             </div>
@@ -322,8 +349,8 @@
     <section class="reseñas" id="reseñas">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Lo que dicen nuestros <span class="gradient-text">clientes</span></h2>
-                <p class="section-subtitle">Más de 2500 familias confían en nosotros</p>
+                <h2 class="section-title"><span data-i18n="resenas.titlePre">Lo que dicen nuestros</span> <span class="gradient-text" data-i18n="resenas.titleHighlight">clientes</span></h2>
+                <p class="section-subtitle" data-i18n="resenas.subtitle">Más de 2500 familias confían en nosotros</p>
             </div>
 
             <div class="reseñas-slider">
@@ -410,7 +437,7 @@
 
                         <span class="logo-text">Mudanzas <strong>JD</strong></span>
                     </div>
-                    <p class="footer-description">
+                    <p class="footer-description" data-i18n="footer.description">
                         Tu socio de confianza en mudanzas profesionales. Llevamos tu hogar a donde necesites con
                         seguridad y profesionalidad.
                     </p>
@@ -447,27 +474,27 @@
                 </div>
 
                 <div class="footer-column">
-                    <h3 class="footer-title">Enlaces rápidos</h3>
+                    <h3 class="footer-title" data-i18n="footer.quickLinks">Enlaces rápidos</h3>
                     <ul class="footer-links">
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#beneficios">Beneficios</a></li>
-                        <li><a href="#reseñas">Reseñas</a></li>
-                        <li><a href="#calculator">Presupuesto</a></li>
+                        <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+                        <li><a href="#beneficios" data-i18n="nav.beneficios">Beneficios</a></li>
+                        <li><a href="#reseñas" data-i18n="nav.resenas">Reseñas</a></li>
+                        <li><a href="#calculator" data-i18n="footer.quoteLink">Presupuesto</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3 class="footer-title">Servicios</h3>
+                    <h3 class="footer-title" data-i18n="nav.servicios">Servicios</h3>
                     <ul class="footer-links">
-                        <li><a href="#servicios">Mudanzas locales</a></li>
-                        <li><a href="#servicios">Mudanzas nacionales</a></li>
-                        <li><a href="#servicios">Mudanzas de oficina</a></li>
-                        <li><a href="#servicios">Embalaje profesional</a></li>
+                        <li><a href="#servicios" data-i18n="servicio1.title">Mudanzas locales</a></li>
+                        <li><a href="#servicios" data-i18n="servicio2.title">Mudanzas nacionales</a></li>
+                        <li><a href="#servicios" data-i18n="servicio3.title">Mudanzas de oficina</a></li>
+                        <li><a href="#servicios" data-i18n="footer.packagingLink">Embalaje profesional</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
-                    <h3 class="footer-title">Contacto</h3>
+                    <h3 class="footer-title" data-i18n="nav.contacto">Contacto</h3>
                     <ul class="footer-contact">
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -505,11 +532,11 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 Mudanzas JD. Todos los derechos reservados.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 Mudanzas JD. Todos los derechos reservados.</p>
                 <div class="footer-legal">
-                    <a href="#">Política de privacidad</a>
+                    <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
                     <span>·</span>
-                    <a href="#">Términos y condiciones</a>
+                    <a href="#" data-i18n="footer.terms">Términos y condiciones</a>
                 </div>
             </div>
         </div>
@@ -570,36 +597,6 @@
             calculator.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // Submit lead request
-        function submitLead(event) {
-            event.preventDefault();
-
-            const form = document.getElementById('leadForm');
-            const successCard = document.getElementById('successCard');
-
-            // Aquí iría el envío real de los datos a un backend / CRM
-            // const lead = {
-            //     nombre: document.getElementById('nombre').value,
-            //     telefono: document.getElementById('telefono').value,
-            //     origen: document.getElementById('origen').value,
-            //     destino: document.getElementById('destino').value,
-            //     tamaño: document.getElementById('tamaño').value
-            // };
-
-            // Fade-out suave del formulario
-            form.classList.add('is-hidden');
-
-            // Al terminar la transición, ocultamos el form y mostramos la tarjeta de éxito
-            form.addEventListener('transitionend', function onFadeOut() {
-                form.removeEventListener('transitionend', onFadeOut);
-                form.style.display = 'none';
-                successCard.classList.add('is-visible');
-                successCard.setAttribute('aria-hidden', 'false');
-            }, { once: true });
-
-            return false;
-        }
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -654,6 +651,9 @@
 
 
     </script>
+
+    <!-- Traducciones, validación de formulario y envío de solicitudes -->
+    <script src="app.js"></script>
 </body>
 
 </html>
