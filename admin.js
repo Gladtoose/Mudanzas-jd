@@ -547,18 +547,32 @@ function renderPaginacion() {
 
 function actualizarVisibilidadTabla(sinResultados) {
   const hayError = Boolean(state.error);
-  const ocultarTabla = state.cargando || hayError || sinResultados;
 
+  // 1. Manejo del skeleton de carga
   dom.tablaSkeleton.classList.toggle("is-visible", state.cargando);
-  dom.tabla.style.display = ocultarTabla ? "none" : "";
-  dom.tablaEmpty.hidden = !sinResultados;
-  dom.tablaError.hidden = !hayError;
 
-  if (hayError) {
+  // 2. Visibilidad del contenedor de la tabla principal
+  const ocultarTabla = state.cargando || hayError || sinResultados;
+  dom.tabla.style.display = ocultarTabla ? "none" : "";
+
+  // 3. Control estricto de visibilidad para los mensajes de error y vacío
+  if (dom.tablaEmpty) {
+    dom.tablaEmpty.hidden = state.cargando || hayError || !sinResultados;
+    dom.tablaEmpty.style.display = (!state.cargando && !hayError && sinResultados) ? "block" : "none";
+  }
+
+  if (dom.tablaError) {
+    dom.tablaError.hidden = state.cargando || !hayError;
+    dom.tablaError.style.display = (!state.cargando && hayError) ? "block" : "none";
+  }
+
+  if (hayError && dom.tablaErrorMensaje) {
     dom.tablaErrorMensaje.textContent = state.error;
   }
 
-  dom.tablaLoadingAnuncio.textContent = state.cargando ? "Cargando solicitudes…" : "";
+  if (dom.tablaLoadingAnuncio) {
+    dom.tablaLoadingAnuncio.textContent = state.cargando ? "Cargando solicitudes…" : "";
+  }
 }
 
 function renderTabla() {
