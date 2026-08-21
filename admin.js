@@ -5,7 +5,7 @@
    ========================================================================== */
 // admin.html vive en la raíz del proyecto, fuera de src/main/resources/static,
 // por lo que la URL de la API no puede ser relativa: apunta al origen del backend.
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "https://mudanzasjd-backend.onrender.com/api";
 const SOLICITUDES_ENDPOINT = `${API_BASE_URL}/solicitudes`;
 
 const ESTADOS = [
