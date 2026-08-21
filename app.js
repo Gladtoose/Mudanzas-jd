@@ -3,7 +3,7 @@
     'use strict';
 
     const STORAGE_KEY = 'mjd_lang';
-    const API_URL = 'http://127.0.0.1:8080/api/solicitudes';
+    const API_URL = 'https://mudanzasjd-backend.onrender.com/api/solicitudes';
 
     const translations = {
         es: {
