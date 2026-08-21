@@ -1,0 +1,14 @@
+### Variables de entorno locales (credenciales, no versionar) ###
+.env
+
+### IDE ###
+.vscode/
+.idea/
+
+### Logs ###
+*.log
+logs/
+
+### Sistema ###
+.DS_Store
+Thumbs.db

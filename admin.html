@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de Control · Mudanzas JD</title>
+<meta name="description" content="Backoffice de gestión de solicitudes de mudanza">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<a href="#panel" class="skip-link">Saltar al contenido principal</a>
+
+<svg aria-hidden="true" focusable="false" style="display:none">
+  <symbol id="icon-menu" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></symbol>
+  <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></symbol>
+  <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5l-8-3Z"/></symbol>
+  <symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="icon-chevron-left" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></symbol>
+  <symbol id="icon-chevron-right" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></symbol>
+  <symbol id="icon-list" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+  <symbol id="icon-bolt" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></symbol>
+  <symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.5 11 15 16 9"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></symbol>
+  <symbol id="icon-inbox" viewBox="0 0 24 24"><polyline points="4 12 9 12 11 15 13 15 15 12 20 12"/><path d="M4 12 5.5 5h13L20 12v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6Z"/></symbol>
+  <symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></symbol>
+  <symbol id="icon-sort" viewBox="0 0 24 24"><polyline points="7 10 12 5 17 10"/><polyline points="7 14 12 19 17 14"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="icon-logout" viewBox="0 0 24 24"><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></symbol>
+</svg>
+
+<div class="app-shell">
+  <div id="sidebar-backdrop" class="sidebar-backdrop" hidden></div>
+
+  <aside id="sidebar" class="sidebar" aria-label="Navegación principal">
+    <div class="sidebar__brand">
+      <span class="sidebar__logo" aria-hidden="true">MJD</span>
+      <span class="sidebar__name">Mudanzas JD</span>
+    </div>
+    <nav class="sidebar__nav" aria-label="Secciones">
+      <a class="sidebar__link is-active" href="#panel" aria-current="page">
+        <svg class="icon" aria-hidden="true"><use href="#icon-list"></use></svg>
+        Panel
+      </a>
+      <a class="sidebar__link" href="#solicitudes-section">
+        <svg class="icon" aria-hidden="true"><use href="#icon-inbox"></use></svg>
+        Solicitudes
+      </a>
+    </nav>
+    <div class="sidebar__footer">
+      <button id="btn-config-acceso" class="sidebar__auth-btn" type="button">
+        <span id="auth-status-dot" class="auth-status-dot" aria-hidden="true"></span>
+        <svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg>
+        <span id="auth-status-label">Configurar acceso</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <button id="btn-sidebar-toggle" class="icon-btn topbar__menu-btn" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">
+        <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+      </button>
+      <h1 class="topbar__title">Solicitudes de mudanza</h1>
+      <div class="topbar__actions">
+        <button id="btn-refresh" class="btn btn--ghost" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg>
+          <span>Actualizar</span>
+        </button>
+        <button id="btn-logout" class="btn btn--ghost" type="button">
+          <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
+          <span>Cerrar sesión</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="panel" class="content" tabindex="-1">
+      <section class="kpis" aria-label="Indicadores clave">
+        <article class="kpi-card kpi-card--total">
+          <div class="kpi-card__icon" aria-hidden="true"><svg class="icon"><use href="#icon-list"></use></svg></div>
+          <div class="kpi-card__body">
+            <p class="kpi-card__label">Total solicitudes</p>
+            <p class="kpi-card__value" id="kpi-total">—</p>
+          </div>
+        </article>
+        <article class="kpi-card kpi-card--nuevas">
+          <div class="kpi-card__icon" aria-hidden="true"><svg class="icon"><use href="#icon-bolt"></use></svg></div>
+          <div class="kpi-card__body">
+            <p class="kpi-card__label">Nuevas hoy</p>
+            <p class="kpi-card__value" id="kpi-nuevas-hoy">—</p>
+          </div>
+        </article>
+        <article class="kpi-card kpi-card--proceso">
+          <div class="kpi-card__icon" aria-hidden="true"><svg class="icon"><use href="#icon-clock"></use></svg></div>
+          <div class="kpi-card__body">
+            <p class="kpi-card__label">En proceso</p>
+            <p class="kpi-card__value" id="kpi-en-proceso">—</p>
+          </div>
+        </article>
+        <article class="kpi-card kpi-card--completadas">
+          <div class="kpi-card__icon" aria-hidden="true"><svg class="icon"><use href="#icon-check-circle"></use></svg></div>
+          <div class="kpi-card__body">
+            <p class="kpi-card__label">Completadas</p>
+            <p class="kpi-card__value" id="kpi-completadas">—</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="solicitudes-section" class="panel-card" aria-labelledby="tabla-heading">
+        <div class="panel-card__toolbar">
+          <div class="search-field">
+            <svg class="icon search-field__icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+            <label for="input-buscar" class="visually-hidden">Buscar solicitudes</label>
+            <input id="input-buscar" type="search" placeholder="Buscar por nombre, email, teléfono o ciudad…" autocomplete="off">
+          </div>
+
+          <div class="filter-field">
+            <label for="select-estado">Estado</label>
+            <select id="select-estado">
+              <option value="">Todos</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="input-fecha-desde">Desde</label>
+            <input type="date" id="input-fecha-desde">
+          </div>
+
+          <div class="filter-field">
+            <label for="input-fecha-hasta">Hasta</label>
+            <input type="date" id="input-fecha-hasta">
+          </div>
+
+          <div class="toolbar__buttons">
+            <button id="btn-limpiar-filtros" class="btn btn--ghost" type="button">Limpiar</button>
+            <button id="btn-exportar-csv" class="btn btn--secondary" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
+              <span>Exportar CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <h2 id="tabla-heading" class="visually-hidden">Listado de solicitudes</h2>
+        <p id="tabla-loading-anuncio" class="visually-hidden" role="status" aria-live="polite"></p>
+
+        <div class="table-wrapper" role="region" aria-label="Tabla de solicitudes" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" aria-sort="none" data-sort-key="id">
+                  <button class="th-sort" type="button" data-sort-key="id">
+                    ID <svg class="icon icon--sort" aria-hidden="true"><use href="#icon-sort"></use></svg>
+                  </button>
+                </th>
+                <th scope="col" aria-sort="descending" data-sort-key="fechaCreacion">
+                  <button class="th-sort" type="button" data-sort-key="fechaCreacion">
+                    Fecha <svg class="icon icon--sort" aria-hidden="true"><use href="#icon-sort"></use></svg>
+                  </button>
+                </th>
+                <th scope="col" aria-sort="none" data-sort-key="nombre">
+                  <button class="th-sort" type="button" data-sort-key="nombre">
+                    Cliente <svg class="icon icon--sort" aria-hidden="true"><use href="#icon-sort"></use></svg>
+                  </button>
+                </th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Ruta</th>
+                <th scope="col">Tamaño</th>
+                <th scope="col">Estado</th>
+                <th scope="col"><span class="visually-hidden">Acciones</span></th>
+              </tr>
+            </thead>
+            <tbody id="tabla-body"></tbody>
+          </table>
+
+          <div id="tabla-skeleton" class="skeleton-rows" aria-hidden="true">
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+          </div>
+
+          <div id="tabla-empty" class="empty-state" role="status" hidden>
+            <svg class="icon empty-state__icon" aria-hidden="true"><use href="#icon-inbox"></use></svg>
+            <p class="empty-state__title">No hay solicitudes que coincidan</p>
+            <p class="empty-state__hint">Prueba a ajustar la búsqueda o los filtros aplicados.</p>
+          </div>
+
+          <div id="tabla-error" class="empty-state empty-state--error" role="alert" hidden>
+            <svg class="icon empty-state__icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg>
+            <p class="empty-state__title">No se pudieron cargar las solicitudes</p>
+            <p class="empty-state__hint" id="tabla-error-mensaje">Ha ocurrido un error inesperado.</p>
+            <button id="btn-reintentar" class="btn btn--secondary" type="button">Reintentar</button>
+          </div>
+        </div>
+
+        <div class="pagination">
+          <div class="pagination__size">
+            <label for="select-page-size">Filas por página</label>
+            <select id="select-page-size">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+          <p class="pagination__info" id="pagination-info" aria-live="polite"></p>
+          <div class="pagination__controls">
+            <button id="btn-prev-page" class="icon-btn" type="button" aria-label="Página anterior">
+              <svg class="icon" aria-hidden="true"><use href="#icon-chevron-left"></use></svg>
+            </button>
+            <button id="btn-next-page" class="icon-btn" type="button" aria-label="Página siguiente">
+              <svg class="icon" aria-hidden="true"><use href="#icon-chevron-right"></use></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<dialog id="modal-detalle" class="modal" aria-labelledby="modal-detalle-title">
+  <header class="modal__header">
+    <h2 id="modal-detalle-title">Detalle de la solicitud</h2>
+    <button type="button" class="icon-btn modal__close" id="btn-cerrar-modal" aria-label="Cerrar">
+      <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg>
+    </button>
+  </header>
+  <div class="modal__body" id="modal-detalle-body"></div>
+  <footer class="modal__footer">
+    <div class="modal__estado-control">
+      <label for="select-nuevo-estado">Cambiar estado</label>
+      <select id="select-nuevo-estado"></select>
+    </div>
+    <div class="modal__actions">
+      <button type="button" id="btn-cancelar-modal" class="btn btn--ghost">Cerrar</button>
+      <button type="button" id="btn-guardar-estado" class="btn btn--primary">Guardar cambios</button>
+    </div>
+  </footer>
+</dialog>
+
+<dialog id="modal-acceso" class="modal modal--sm" aria-labelledby="modal-acceso-title">
+  <header class="modal__header">
+    <h2 id="modal-acceso-title">Configurar acceso a la API</h2>
+    <button type="button" class="icon-btn modal__close" id="btn-cerrar-modal-acceso" aria-label="Cerrar">
+      <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg>
+    </button>
+  </header>
+  <div class="modal__body">
+    <p class="modal__hint">
+      Las credenciales se guardan únicamente en esta pestaña (sessionStorage) y se
+      envían como cabecera <code>Authorization</code> en cada petición. Se borran
+      al cerrar la pestaña.
+    </p>
+    <div class="field">
+      <label for="select-auth-tipo">Tipo de autenticación</label>
+      <select id="select-auth-tipo">
+        <option value="none">Sin autenticación</option>
+        <option value="bearer">Bearer Token</option>
+        <option value="basic">Basic Auth</option>
+      </select>
+    </div>
+    <div class="field" id="campo-bearer" hidden>
+      <label for="input-bearer-token">Token</label>
+      <input type="password" id="input-bearer-token" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="field" id="campo-basic-user" hidden>
+      <label for="input-basic-user">Usuario</label>
+      <input type="text" id="input-basic-user" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="field" id="campo-basic-pass" hidden>
+      <label for="input-basic-pass">Contraseña</label>
+      <input type="password" id="input-basic-pass" autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+  <footer class="modal__footer modal__footer--end">
+    <button type="button" id="btn-olvidar-credenciales" class="btn btn--ghost">Olvidar credenciales</button>
+    <button type="button" id="btn-guardar-acceso" class="btn btn--primary">Guardar</button>
+  </footer>
+</dialog>
+
+<dialog id="modal-login" class="modal modal--sm modal--login" aria-labelledby="modal-login-title">
+  <div class="modal__body modal__body--login">
+    <div class="login-icon" aria-hidden="true">
+      <svg class="icon"><use href="#icon-shield"></use></svg>
+    </div>
+    <h2 id="modal-login-title">Acceso al panel</h2>
+    <p class="modal__hint modal__hint--center">Introduce la contraseña de administración para continuar.</p>
+    <form id="form-login-admin" novalidate>
+      <div class="field">
+        <label for="input-login-password" class="visually-hidden">Contraseña</label>
+        <input type="password" id="input-login-password" name="password" placeholder="Contraseña" autocomplete="current-password" required autofocus>
+      </div>
+      <p id="login-error" class="login-error" role="alert" hidden>Contraseña incorrecta</p>
+      <button type="submit" class="btn btn--primary login-submit">Entrar</button>
+    </form>
+  </div>
+</dialog>
+
+<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<script src="auth.js" defer></script>
+<script src="admin.js" defer></script>
+</body>
+</html>

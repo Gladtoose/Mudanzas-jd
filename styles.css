@@ -743,42 +743,63 @@ button {
     margin-bottom: var(--spacing-md);
 }
 
-/* Botón destacado que llama la atención */
-.btn-urgent {
-    gap: 0.5rem;
-    padding: 1rem 1.25rem;
-    font-size: 0.9375rem;
+/* Botón principal de llamada directa: máxima visibilidad y área de toque amplia en móvil */
+.btn-call-direct {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.125rem 1.5rem;
+    min-height: 56px;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
     font-weight: 700;
     line-height: 1.3;
-    color: var(--color-white);
-    background: linear-gradient(135deg, var(--color-warning) 0%, #f97316 100%);
-    box-shadow: 0 8px 22px -6px rgba(245, 158, 11, 0.6);
     text-align: center;
-    animation: urgent-attention 2s ease-in-out infinite;
+    text-decoration: none;
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border: none;
+    border-radius: var(--radius-full);
+    box-shadow: 0 8px 22px -6px rgba(59, 130, 246, 0.6);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    animation: call-direct-pulse 2.2s ease-in-out infinite;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-urgent:hover {
+.btn-call-direct:hover,
+.btn-call-direct:focus-visible {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.55);
     animation-play-state: paused;
 }
 
-.btn-urgent-icon {
-    font-size: 1.125rem;
+.btn-call-direct:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 14px -4px rgba(59, 130, 246, 0.6);
 }
 
-/* Vibración/latido sutil para captar la atención */
-@keyframes urgent-attention {
+.btn-call-direct-icon {
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+/* Latido sutil para captar la atención sin resultar molesto */
+@keyframes call-direct-pulse {
 
     0%,
     100% {
         transform: translateY(0) scale(1);
-        box-shadow: 0 8px 22px -6px rgba(245, 158, 11, 0.6);
+        box-shadow: 0 8px 22px -6px rgba(59, 130, 246, 0.6);
     }
 
     50% {
         transform: translateY(-2px) scale(1.015);
-        box-shadow: 0 12px 28px -6px rgba(245, 158, 11, 0.75);
+        box-shadow: 0 12px 28px -6px rgba(59, 130, 246, 0.75);
     }
 }
 
@@ -1437,16 +1458,14 @@ button {
         padding: var(--spacing-sm) 10px; 
     }
 
-    .success-card .btn-urgent {
-        width: 100%;            
+    .success-card .btn-call-direct {
+        width: 100%;
         box-sizing: border-box;
-        padding: 12px 10px;     
-        
-        
-        white-space: normal; 
+        padding: 1rem 0.75rem;
+        font-size: 0.9375rem;
+        white-space: normal;
         word-wrap: break-word;
-        
-        
+        overflow-wrap: break-word;
         display: inline-flex;
         align-items: center;
         justify-content: center;

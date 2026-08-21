@@ -3,7 +3,7 @@
     'use strict';
 
     const STORAGE_KEY = 'mjd_lang';
-    const API_URL = 'http://localhost:8080/api/solicitudes';
+    const API_URL = 'http://127.0.0.1:8080/api/solicitudes';
 
     const translations = {
         es: {
@@ -54,7 +54,7 @@
 
             'success.title': '¡Solicitud recibida!',
             'success.message': 'Te llamaremos en menos de 2 horas.',
-            'success.urgent': '¿Tienes prisa? Agendar llamada directa en el calendario',
+            'success.urgent': '¿Tienes prisa? Llamar ahora mismo',
 
             'beneficios.titlePre': '¿Por qué elegir',
             'beneficios.subtitle': 'Compromiso con la excelencia en cada mudanza',
@@ -145,7 +145,7 @@
 
             'success.title': 'Request received!',
             'success.message': "We'll call you within 2 hours.",
-            'success.urgent': 'In a hurry? Schedule a direct call on the calendar',
+            'success.urgent': 'In a hurry? Call right now',
 
             'beneficios.titlePre': 'Why choose',
             'beneficios.subtitle': 'Committed to excellence in every move',
@@ -311,7 +311,7 @@
 
         const successCard = document.getElementById('successCard');
         const submitButton = form.querySelector('button[type="submit"]');
-        const fields = REQUIRED_FIELD_IDS.map((id) => document.getElementById(id));
+        const fields = REQUIRED_FIELD_IDS.map((id) => document.getElementById(id)).filter((el) => el !== null);
 
         fields.forEach((input) => {
             input.addEventListener('blur', () => validateField(input));
