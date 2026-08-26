@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Deshabilitar el rastreo de carpetas privadas o administrativas
+Disallow: /admin.html
+Disallow: /js/
+
+# Ruta al Sitemap XML
+Sitemap: https://mudanzasjd.es/sitemap.xml
