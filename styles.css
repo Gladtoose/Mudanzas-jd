@@ -64,6 +64,10 @@
 /* ============================================
    Reset & Base Styles
    ============================================ */
+img, iframe, form, button, input {
+    max-width: 100%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -344,6 +348,9 @@ button {
     border-radius: var(--radius-md);
     transition: all var(--transition-base);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Cambio de color sutil al pasar el cursor en todos los botones */
@@ -495,10 +502,21 @@ button {
 .hero-content {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
     gap: var(--spacing-3xl);
     align-items: center;
+}
+
+.hero-text,
+.calculator-widget {
+    flex: 1 1 380px;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .hero-title {
@@ -507,6 +525,9 @@ button {
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .hero-subtitle {
@@ -517,15 +538,18 @@ button {
 }
 
 .hero-stats {
-    display: flex;
-    gap: var(--spacing-xl);
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    width: 100%;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .stat-number {
@@ -536,11 +560,15 @@ button {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .stat-label {
     font-size: 0.875rem;
     color: var(--color-text-secondary);
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ============================================
@@ -1383,7 +1411,6 @@ button {
     }
 
     .hero-content {
-        grid-template-columns: 1fr;
         gap: var(--spacing-xl);
     }
 
@@ -1435,15 +1462,8 @@ button {
 
     
     .hero .hero-content .hero-stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-md);
         justify-items: center;
         text-align: center;
-    }
-    
-    .hero .hero-content .hero-stats .stat-item:last-child {
-        grid-column: span 2; /* Centra la tercera estadística (24/7) abajo */
     }
 }
 
