@@ -49,6 +49,7 @@
             'errors.required': 'Este campo es obligatorio',
             'errors.phone': 'Introduce un teléfono válido de 9 dígitos',
             'errors.email': 'Introduce un correo electrónico válido',
+            'errors.minLength': 'Introduce al menos 3 caracteres',
             'errors.generic': 'No se pudo procesar tu solicitud. Revisa los datos e inténtalo de nuevo.',
             'errors.network': 'No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.',
 
@@ -140,6 +141,7 @@
             'errors.required': 'This field is required',
             'errors.phone': 'Enter a valid 9-digit phone number',
             'errors.email': 'Enter a valid email address',
+            'errors.minLength': 'Enter at least 3 characters',
             'errors.generic': "We couldn't process your request. Please check your details and try again.",
             'errors.network': 'Could not connect to the server. Please try again later.',
 
@@ -231,6 +233,8 @@
 
     const PHONE_DIGITS_REGEX = /^\d{9}$/;
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const MIN_LENGTH = 3;
+    const MIN_LENGTH_FIELD_IDS = ['origen', 'destino'];
     const REQUIRED_FIELD_IDS = ['nombre', 'telefono', 'email', 'origen', 'destino', 'tamaño'];
 
     function cleanPhone(value) {
@@ -270,6 +274,11 @@
 
         if (input.id === 'email' && value && !EMAIL_REGEX.test(value)) {
             setFieldError(input, 'errors.email');
+            return false;
+        }
+
+        if (MIN_LENGTH_FIELD_IDS.includes(input.id) && value && value.length < MIN_LENGTH) {
+            setFieldError(input, 'errors.minLength');
             return false;
         }
 
@@ -346,7 +355,7 @@
                 body: JSON.stringify(payload)
             })
                 .then((response) => {
-                    if (response.status === 201) {
+                    if (response.status === 201 || response.status === 200) {
                         form.reset();
                         fields.forEach(clearFieldError);
 
@@ -356,6 +365,7 @@
                             form.style.display = 'none';
                             successCard.classList.add('is-visible');
                             successCard.setAttribute('aria-hidden', 'false');
+                            successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }, { once: true });
 
                         return;
