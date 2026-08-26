@@ -539,7 +539,7 @@ button {
 
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     width: 100%;
 }
@@ -554,14 +554,16 @@ button {
 
 .stat-number {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
     font-weight: 800;
     background: var(--gradient-text);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    word-break: break-word;
-    overflow-wrap: break-word;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+    white-space: normal;
 }
 
 .stat-label {
@@ -569,6 +571,18 @@ button {
     color: var(--color-text-secondary);
     word-break: break-word;
     overflow-wrap: break-word;
+}
+
+/* Desktop: da aire a la columna de texto y aprovecha el espacio para 4 columnas */
+@media (min-width: 769px) {
+    .hero-text {
+        flex: 1 1 550px;
+        max-width: 55%;
+    }
+
+    .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 /* ============================================
