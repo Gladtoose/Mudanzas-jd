@@ -108,6 +108,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cookie-consent.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
@@ -514,7 +515,8 @@
                                     stroke-linejoin="round" />
                             </svg>
                         </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
+                        <a href="https://www.instagram.com/_mudanzasjd/" class="social-link" aria-label="Instagram"
+                            target="_blank" rel="noopener noreferrer">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor"
@@ -579,7 +581,7 @@
                                 <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <span>info@mudanzasjd.com</span>
+                            <span>Jhonnyrafaeldiaz25@gmail.com</span>
                         </li>
                         <li>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -598,7 +600,11 @@
             <div class="footer-bottom">
                 <p data-i18n="footer.copyright">&copy; 2026 Mudanzas JD. Todos los derechos reservados.</p>
                 <div class="footer-legal">
-                    <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+                    <a href="politica-privacidad.html" data-i18n="footer.privacy">Política de privacidad</a>
+                    <span>·</span>
+                    <a href="politica-cookies.html" data-i18n="footer.cookies">Política de cookies</a>
+                    <span>·</span>
+                    <a href="#" id="footer-cookie-settings" data-i18n="footer.cookieSettings">Configuración de cookies</a>
                     <span>·</span>
                     <a href="#" data-i18n="footer.terms">Términos y condiciones</a>
                 </div>
@@ -672,6 +678,12 @@
             });
         });
 
+        // Reabrir el panel de preferencias de cookies desde el footer
+        document.getElementById('footer-cookie-settings')?.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.CookieConsent?.openPreferences();
+        });
+
         // Voiceflow chatbot integration (placeholder)
         // Aquí se insertará el código de integración de Voiceflow
         // Ejemplo:
@@ -715,6 +727,9 @@
 
 
     </script>
+
+    <!-- Consentimiento de cookies -->
+    <script src="cookie-consent.js" defer></script>
 
     <!-- Traducciones, validación de formulario y envío de solicitudes -->
     <script src="app.js"></script>

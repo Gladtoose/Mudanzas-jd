@@ -104,6 +104,8 @@
             'footer.packagingLink': 'Embalaje profesional',
             'footer.copyright': '© 2026 Mudanzas JD. Todos los derechos reservados.',
             'footer.privacy': 'Política de privacidad',
+            'footer.cookies': 'Política de cookies',
+            'footer.cookieSettings': 'Configuración de cookies',
             'footer.terms': 'Términos y condiciones'
         },
         en: {
@@ -204,6 +206,8 @@
             'footer.packagingLink': 'Professional packing',
             'footer.copyright': '© 2026 Mudanzas JD. All rights reserved.',
             'footer.privacy': 'Privacy policy',
+            'footer.cookies': 'Cookie policy',
+            'footer.cookieSettings': 'Cookie settings',
             'footer.terms': 'Terms and conditions'
         }
     };
